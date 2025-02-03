@@ -1,15 +1,26 @@
 #!/bin/sh
 
+# Validar formato cron
+validar_cron() {
+    if ! echo "$1" | grep -qE '^[*/0-9,-]+ [*/0-9,-]+ [*/0-9,-]+ [*/0-9,-]+ [*/0-9,-]+$'; then
+        echo "Error: Formato cron inválido: $1"
+        echo "Debe tener 5 campos: minuto hora día-mes mes día-semana"
+        exit 1
+    fi
+}
+
 # Validar que HORA esté definida
 if [ -z "$CRON_PAUSAR" ]; then
     echo "La variable CRON_PAUSAR no está definida."
     exit 1
 fi
+validar_cron "$CRON_PAUSAR"
 
 if [ -z "$CRON_REANUDAR" ]; then
     echo "La variable CRON_REANUDAR no está definida."
     exit 1
 fi
+validar_cron "$CRON_REANUDAR"
 
 # Confirmación de configuración de cron
 echo "$(date +'%d-%m-%Y %H:%M:%S') $VERSION - Arrancando entrypoint.sh"

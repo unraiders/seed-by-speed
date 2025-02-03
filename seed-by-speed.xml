@@ -13,7 +13,7 @@
   </Overview>
   <Category>Tools:</Category>
   <Config Name="QBITTORRENT_HOST" Target="QBITTORRENT_HOST" Default="" Mode="" Description="Host de qBittorrent, ejemplo: 192.168.2.20" Type="Variable" Display="always" Required="true"></Config>
-  <Config Name="QBITTORRENT_PORT" Target="QBITTORRENT_HOST" Default="" Mode="" Description="Puerto de qBittorrent, ejemplo: 8090" Type="Variable" Display="always" Required="true"></Config>
+  <Config Name="QBITTORRENT_PORT" Target="QBITTORRENT_PORT" Default="" Mode="" Description="Puerto de qBittorrent, ejemplo: 8090" Type="Variable" Display="always" Required="true"></Config>
   <Config Name="QBITTORRENT_USER" Target="QBITTORRENT_USER" Default="admin" Mode="" Description="Usuario de qBittorrent" Type="Variable" Display="always" Required="true"></Config>
   <Config Name="QBITTORRENT_PASSWORD" Target="QBITTORRENT_PASSWORD" Default="admin" Mode="" Description="Contraseña de qBittorrent" Type="Variable" Display="always" Required="true" Mask="true"></Config>
   <Config Name="DEBUG" Target="DEBUG" Default="0|1" Mode="" Description="Habilita el modo Debug en el log. (0 = No / 1 = Si)" Type="Variable" Display="always" Required="true" Mask="false"></Config>
