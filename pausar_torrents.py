@@ -20,6 +20,7 @@ client = Client(host=QBITTORRENT_HOST, port=QBITTORRENT_PORT, username=QBITTORRE
 # Load trackers dictionary
 with open('/app/data/trackers.dic', 'r') as f:
     trackers = json.load(f)
+    logger.debug(f"Loaded trackers: {trackers}")
 
 def pausar_torrents():
     torrents = client.torrents_info()

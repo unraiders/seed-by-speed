@@ -23,7 +23,7 @@ CRON_JOB_REANUDAR="$CRON_REANUDAR python3 /app/reanudar_torrents.py >> /proc/1/f
 
 # Agregar los trabajos al crontab
 echo "$CRON_JOB_PAUSAR" > /etc/crontabs/root
-echo "$CRON_JOB_REANUDAR" > /etc/crontabs/root
+echo "$CRON_JOB_REANUDAR" >> /etc/crontabs/root
 
 # Set up cron jobs
 # echo "$CRON_PAUSAR /usr/local/bin/python /app/pausar_torrents.py >> /var/log/cron.log 2>&1" > /etc/crontabs/root
