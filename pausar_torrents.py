@@ -15,7 +15,15 @@ DEBUG = int(os.getenv('DEBUG', 0))
 logger = setup_logger('pausar_torrents')
 
 # Connect to qBittorrent
-client = Client(host=QBITTORRENT_HOST, port=QBITTORRENT_PORT, username=QBITTORRENT_USER, password=QBITTORRENT_PASSWORD)
+# client = Client(host=QBITTORRENT_HOST, port=QBITTORRENT_PORT, username=QBITTORRENT_USER, password=QBITTORRENT_PASSWORD)
+
+# Conectar con qBittorrent
+client = Client(
+        host=f'http://192.168.2.20:8090',
+        username=QBITTORRENT_USER,
+        password=QBITTORRENT_PASSWORD,
+    )
+    
 
 # Load trackers dictionary
 with open('/app/data/trackers.dic', 'r') as f:
