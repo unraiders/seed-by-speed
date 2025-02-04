@@ -1,26 +1,15 @@
 import os
-from qbittorrentapi import Client
 from utils import setup_logger
-
-# Load environment variables
-QBITTORRENT_HOST = os.getenv('QBITTORRENT_HOST')
-QBITTORRENT_PORT = os.getenv('QBITTORRENT_PORT')
-QBITTORRENT_USER = os.getenv('QBITTORRENT_USER')
-QBITTORRENT_PASSWORD = os.getenv('QBITTORRENT_PASSWORD')
-DEBUG = int(os.getenv('DEBUG', 0))
+from qbit_config import get_qbittorrent_client
 
 # Initialize logger
 logger = setup_logger('reanudar_torrents')
 
-# Connect to qBittorrent
-client = Client(
-    host=f'http://{QBITTORRENT_HOST}:{QBITTORRENT_PORT}',
-    username=QBITTORRENT_USER,
-    password=QBITTORRENT_PASSWORD,
-)
-
 def reanudar_torrents():
     logger.info("Iniciando proceso de reanudar torrents")
+    
+    # Get qBittorrent client
+    client = get_qbittorrent_client()
     
     # Verificar que el archivo existe
     if not os.path.exists('/app/data/torrents.txt'):
