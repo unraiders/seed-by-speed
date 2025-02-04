@@ -15,9 +15,6 @@ DEBUG = int(os.getenv('DEBUG', 0))
 logger = setup_logger('pausar_torrents')
 
 # Connect to qBittorrent
-# client = Client(host=QBITTORRENT_HOST, port=QBITTORRENT_PORT, username=QBITTORRENT_USER, password=QBITTORRENT_PASSWORD)
-
-# Connect to qBittorrent
 client = Client(
     host=f'http://{QBITTORRENT_HOST}:{QBITTORRENT_PORT}',
     username=QBITTORRENT_USER,
@@ -34,7 +31,6 @@ def pausar_torrents():
     
     for torrent in client.torrents_info():
         # Solo procesar si está en uploading
-        # if not torrent.state_enum.is_uploading:
         if not torrent.state in ['uploading']:
             continue
             
@@ -71,10 +67,8 @@ def pausar_torrents():
                 logger.info(f"Pausado torrent: {torrent.name}")
             except Exception as e:
                 logger.error(f"Error al pausar torrent {torrent.name}: {str(e)}")
-
-    logger.info("Proceso finalizado")
-
+                
+    logger.info("Finalizado proceso de pausado de torrents")
+    
 if __name__ == "__main__":
-    logger.info("Iniciando script pausar_torrents.py")
     pausar_torrents()
-    logger.info("Finalizado script pausar_torrents.py")

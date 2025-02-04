@@ -36,10 +36,6 @@ CRON_JOB_REANUDAR="$CRON_REANUDAR python3 /app/reanudar_torrents.py >> /proc/1/f
 echo "$CRON_JOB_PAUSAR" > /etc/crontabs/root
 echo "$CRON_JOB_REANUDAR" >> /etc/crontabs/root
 
-# Set up cron jobs
-# echo "$CRON_PAUSAR /usr/local/bin/python /app/pausar_torrents.py >> /var/log/cron.log 2>&1" > /etc/crontabs/root
-# echo "$CRON_REANUDAR /usr/local/bin/python /app/reanudar_torrents.py >> /var/log/cron.log 2>&1" >> /etc/crontabs/root
-
 # Iniciar cron en segundo plano
 echo "Arrancando cron..."
 crond -f -l 2 || { echo "Error arrancando cron"; exit 1; }

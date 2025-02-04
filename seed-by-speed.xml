@@ -7,9 +7,9 @@
   <Shell>sh</Shell>
   <Privileged>false</Privileged>
   <Support>https://hub.docker.com/unraiders/seed-by-speed</Support>
-  <Icon>https://raw.githubusercontent.com/unraiders/seed-by-speed/master/seed-by-speed-icon.png</Icon>
+  <Icon>https://raw.githubusercontent.com/unraiders/imagenes/master/seed-by-speed.png</Icon>
   <Overview>
-    ...
+    Pausa/Reanuda torrents en qBittorrent basado en la velocidad de upload fuera de tiempo de sedeo.
   </Overview>
   <Category>Tools:</Category>
   <Config Name="QBITTORRENT_HOST" Target="QBITTORRENT_HOST" Default="" Mode="" Description="Host de qBittorrent, ejemplo: 192.168.2.20" Type="Variable" Display="always" Required="true"></Config>
