@@ -1,0 +1,38 @@
+[
+    {
+        "Tracker": "",
+        "horas_sedeo_min": 72,
+        "velocidad_min_kbps": 1000,
+        "activo": "si"
+    },
+    {
+        "Tracker": "",
+        "horas_sedeo_min": 120,
+        "velocidad_min_kbps": 1000,
+        "activo": "si"
+    },
+    {
+        "Tracker": "",
+        "horas_sedeo_min": 72,
+        "velocidad_min_kbps": 1000,
+        "activo": "si"
+    },
+    {
+        "Tracker": "",
+        "horas_sedeo_min": 96,
+        "velocidad_min_kbps": 1000,
+        "activo": "si"
+    },
+    {
+        "Tracker": "",
+        "horas_sedeo_min": 48,
+        "velocidad_min_kbps": 1000,
+        "activo": "si"
+    },
+    {
+        "Tracker": "",
+        "horas_sedeo_min": 72,
+        "velocidad_min_kbps": 1000,
+        "activo": "si"
+    }
+]
