@@ -3,8 +3,8 @@ services:
     image: unraiders/seed-by-speed
     container_name: seed-by-speed
     environment:
-      - QBITTORRENT_HOST=192.168.1.100
-      - QBITTORRENT_PORT=8080
+      - QBITTORRENT_HOST=192.168.2.20
+      - QBITTORRENT_PORT=8090
       - QBITTORRENT_USER=admin
       - QBITTORRENT_PASSWORD=adminadmin
       - CRON_PAUSAR=*/30 * * * *
