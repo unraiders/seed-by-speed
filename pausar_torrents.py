@@ -1,34 +1,23 @@
 import os
 import time
 import json
-from qbittorrentapi import Client
 from utils import setup_logger
-
-# Load environment variables
-QBITTORRENT_HOST = os.getenv('QBITTORRENT_HOST')
-QBITTORRENT_PORT = os.getenv('QBITTORRENT_PORT')
-QBITTORRENT_USER = os.getenv('QBITTORRENT_USER')
-QBITTORRENT_PASSWORD = os.getenv('QBITTORRENT_PASSWORD')
-DEBUG = int(os.getenv('DEBUG', 0))
+from qbit_config import get_qbittorrent_client
 
 # Initialize logger
 logger = setup_logger('pausar_torrents')
 
-# Connect to qBittorrent
-client = Client(
-    host=f'http://{QBITTORRENT_HOST}:{QBITTORRENT_PORT}',
-    username=QBITTORRENT_USER,
-    password=QBITTORRENT_PASSWORD,
-)
-
-# Load trackers dictionary
-with open('/app/data/trackers.dic', 'r') as f:
-    trackers = json.load(f)
-    logger.debug(f"Loaded trackers: {trackers}")
-
 def pausar_torrents():
     logger.info("Iniciando proceso de pausado de torrents")
     
+    # Get qBittorrent client
+    client = get_qbittorrent_client()
+    
+    # Load trackers dictionary
+    with open('/app/data/trackers.dic', 'r') as f:
+        trackers = json.load(f)
+        logger.debug(f"Loaded trackers: {trackers}")
+
     for torrent in client.torrents_info():
         # Solo procesar si está en uploading
         if not torrent.state in ['uploading']:
