@@ -18,6 +18,7 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 COPY pausar_torrents.py .
 COPY reanudar_torrents.py .
+COPY qbit_config.py .
 
 COPY utils.py .
 
