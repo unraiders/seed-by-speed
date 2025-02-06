@@ -9,6 +9,16 @@ validar_cron() {
     fi
 }
 
+# Validar el cliente torrent
+validar_cliente_torrent() {
+    if [[ "$1" != "qbittorrent" && "$1" != "transmission" ]]; then
+        echo "Error: Cliente de torrent inválido: $1"
+        echo "Debe ser 'qbittorrent' o 'transmission'"
+        exit 1
+    fi
+}
+validar_cliente_torrent "$TORRENT_CLIENT"
+
 # Validar que HORA esté definida
 if [ -z "$CRON_PAUSAR" ]; then
     echo "La variable CRON_PAUSAR no está definida."
@@ -24,6 +34,7 @@ validar_cron "$CRON_REANUDAR"
 
 # Confirmación de configuración de cron
 echo "$(date +'%d-%m-%Y %H:%M:%S') $VERSION - Arrancando entrypoint.sh"
+echo "$(date +'%d-%m-%Y %H:%M:%S') Cliente Torrent: $TORRENT_CLIENT"
 echo "$(date +'%d-%m-%Y %H:%M:%S') Programación CRON_PAUSAR: $CRON_PAUSAR"
 echo "$(date +'%d-%m-%Y %H:%M:%S') Programación CRON_REANUDAR: $CRON_REANUDAR"
 echo "$(date +'%d-%m-%Y %H:%M:%S') Debug: $DEBUG"
