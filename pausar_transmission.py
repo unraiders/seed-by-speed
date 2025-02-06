@@ -10,7 +10,7 @@ logger = setup_logger('pausar_transmission')
 def pausar_torrents_transmission():
     logger.info("Iniciando proceso de pausado de torrents")
     
-    # Get qBittorrent client
+    # Get Transmission client
     client = get_transmission_client()
     
     # Load trackers dictionary
@@ -19,8 +19,8 @@ def pausar_torrents_transmission():
         logger.debug(f"Loaded trackers: {trackers}")
 
     for torrent in client.get_torrents():
-        # Solo procesar si está en uploading
-        if not torrent.status in ['seeding']:
+        # Solo procesar si está en seeding y subiendo
+        if not (torrent.status in ['seeding'] and torrent.rate_upload > 0):
             continue
             
         logger.debug(f"Procesando torrent en uploading: {torrent.name} (velocidad: {torrent.rate_upload / 1024:.2f} KB/s)")
