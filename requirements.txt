@@ -1,3 +1,4 @@
-python-dotenv==1.0.0
-colorama==0.4.6
-qbittorrent-api==2024.12.71
+python-dotenv == 1.0.0
+colorama == 0.4.6
+qbittorrent-api == 2024.12.71
+transmission-rpc == 7.0.11
