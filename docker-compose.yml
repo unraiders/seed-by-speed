@@ -3,13 +3,14 @@ services:
     image: unraiders/seed-by-speed
     container_name: seed-by-speed
     environment:
-      - QBITTORRENT_HOST=192.168.2.20
-      - QBITTORRENT_PORT=8090
-      - QBITTORRENT_USER=admin
-      - QBITTORRENT_PASSWORD=adminadmin
-      - CRON_PAUSAR=*/30 * * * *
-      - CRON_REANUDAR=0 7 * * *
+      - TORRENT_CLIENT=qbittorrent|transmission # dejar el deseado
+      - TORRENT_CLIENT_HOST=192.168.2.20
+      - TORRENT_CLIENT_PORT=8090
+      - TORRENT_CLIENT_USER=admin
+      - TORRENT_CLIENT_PASSWORD=adminadmin
+      - CRON_PAUSAR=*/30 * * * * # formato crontab
+      - CRON_REANUDAR=0 7 * * * # formato crontab
       - DEBUG=1
     volumes:
-      - /mnt/user/appdata/seed-by-speed/:/app/data
+      - /tu/ruta/local/seed-by-speed/:/app/data
     entrypoint: ./entrypoint.sh
