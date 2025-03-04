@@ -21,4 +21,5 @@
   <Config Name="CRON_PAUSAR" Target="CRON_PAUSAR" Default="*/30 * * * *" Mode="" Description="Cron para pausar las descargas. (formato crontab. ej., */30 * * * * = cada 30 minutos, visita https://crontab.guru/ para más info.)" Type="Variable" Display="always" Required="true" Mask="false"></Config>
   <Config Name="CRON_REANUDAR" Target="CRON_REANUDAR" Default="0 7 * * *" Mode="" Description="Cron para reanudar las descargas. (formato crontab. ej., 0 7 * * * = cada día a las 7:00 AM, visita https://crontab.guru/ para más info.)" Type="Variable" Display="always" Required="true" Mask="false"></Config>
   <Config Name="DATOS" Target="/app/data" Default="" Mode="rw" Description="Ruta de la carpeta en la que guardar los ficheros necesarios." Type="Path" Display="always" Required="true" Mask="false">/mnt/user/appdata/seed-by-speed/</Config>
+  <Config Name="TZ" Target="TZ" Default="Europe/Madrid" Mode="" Description="Zona horaria" Type="Variable" Display="advanced" Required="true" Mask="false"/> 
 </Container>

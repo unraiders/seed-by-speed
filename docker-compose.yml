@@ -11,6 +11,7 @@ services:
       - CRON_PAUSAR=*/30 * * * * # formato crontab
       - CRON_REANUDAR=0 7 * * * # formato crontab
       - DEBUG=1
+      - TZ=Europe/Madrid
     volumes:
       - /tu/ruta/local/seed-by-speed/:/app/data
     entrypoint: ./entrypoint.sh

@@ -1,4 +1,3 @@
-import os
 import time
 import json
 from utils import setup_logger

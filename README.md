@@ -16,14 +16,15 @@ Funcionamiento:
 
 | CLAVE                   | NECESARIO | VALOR                                                                                                                                     |
 | :---------------------- | :-------: | :---------------------------------------------------------------------------------------------------------------------------------------- |
-| TORRENT_CLIENT          |     ✅     | Cliente de descarga de Torrents. (qbittorrent o transmission)                                                                             |
-| TORRENT_CLIENT_HOST     |     ✅     | Host/IP del cliente Torrent. Ejemplo: 192.168.2.20                                                                                        |
-| TORRENT_CLIENT_PORT     |     ✅     | Puerto del cliente Torrent. Ejemplo: 8090                                                                                                 |
-| TORRENT_CLIENT_USER     |     ✅     | Usuario del cliente Torrent.                                                                                                              |
-| TORRENT_CLIENT_PASSWORD |     ✅     | Contraseña del cliente Torrent.                                                                                                           |
-| CRON_PAUSAR             |     ✅     | Cron para pausar las descargas. (formato crontab. ej., */30 * * * * = cada 30 minutos, visita https://crontab.guru/ para más info.        |
-| CRON_REANUDAR           |     ✅     | Cron para reanudar las descargas. (formato crontab. ej., 0 7 * * * = cada día a las 7:00 AM, visita https://crontab.guru/ para más info.) |
-| DEBUG                   |           | Habilita el modo Debug en el log. (0 = No / 1 = Si)                                                                                       |
+| TORRENT_CLIENT          |     ✅    | Cliente de descarga de Torrents. (qbittorrent o transmission)                                                                             |
+| TORRENT_CLIENT_HOST     |     ✅    | Host/IP del cliente Torrent. Ejemplo: 192.168.2.20                                                                                        |
+| TORRENT_CLIENT_PORT     |     ✅    | Puerto del cliente Torrent. Ejemplo: 8090                                                                                                 |
+| TORRENT_CLIENT_USER     |     ✅    | Usuario del cliente Torrent.                                                                                                              |
+| TORRENT_CLIENT_PASSWORD |     ✅    | Contraseña del cliente Torrent.                                                                                                           |
+| CRON_PAUSAR             |     ✅    | Cron para pausar las descargas. (formato crontab. ej., */30 * * * * = cada 30 minutos, visita https://crontab.guru/ para más info.        |
+| CRON_REANUDAR           |     ✅    | Cron para reanudar las descargas. (formato crontab. ej., 0 7 * * * = cada día a las 7:00 AM, visita https://crontab.guru/ para más info.) |
+| DEBUG                   |     ✅    | Habilita el modo Debug en el log. (0 = No / 1 = Si)                                                                                       |
+| TZ                      |     ✅    | Timezone (Por ejemplo: Europe/Madrid)                                                                                                     |
 
 #### Volúmenes
 Es necesario mapear tu carpeta local a /app/data para guardar los ficheros tracker.dic y el torrents.txt generado por el programa.

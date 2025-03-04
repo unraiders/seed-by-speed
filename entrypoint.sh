@@ -37,6 +37,7 @@ echo "$(date +'%d-%m-%Y %H:%M:%S') $VERSION - Arrancando entrypoint.sh"
 echo "$(date +'%d-%m-%Y %H:%M:%S') Cliente Torrent: $TORRENT_CLIENT"
 echo "$(date +'%d-%m-%Y %H:%M:%S') Programación CRON_PAUSAR: $CRON_PAUSAR"
 echo "$(date +'%d-%m-%Y %H:%M:%S') Programación CRON_REANUDAR: $CRON_REANUDAR"
+echo "$(date +'%d-%m-%Y %H:%M:%S') Zona horaria: $TZ"
 echo "$(date +'%d-%m-%Y %H:%M:%S') Debug: $DEBUG"
 
 # Crear una línea para cada crontab

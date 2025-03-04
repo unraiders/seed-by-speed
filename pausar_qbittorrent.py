@@ -1,4 +1,3 @@
-import os
 import time
 import json
 from utils import setup_logger
@@ -20,7 +19,7 @@ def pausar_torrents_qbittorrent():
 
     for torrent in client.torrents_info():
         # Solo procesar si está en uploading
-        if not torrent.state in ['uploading']:
+        if torrent.state not in ['uploading']:
             continue
             
         logger.debug(f"Procesando torrent en uploading: {torrent.name} (velocidad: {torrent.upspeed/1024:.2f} KB/s)")
