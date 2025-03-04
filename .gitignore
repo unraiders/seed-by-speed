@@ -1,7 +1,6 @@
 .DS_Store
 pyproject.toml
 trackers.dic
-torrents.txt
 
 
 # Byte-compiled / optimized / DLL files
