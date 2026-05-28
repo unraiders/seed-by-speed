@@ -1,0 +1,14 @@
+# Ignore everything
+*
+
+# Allow only specific files
+!requirements.txt
+!pausar_torrents.py
+!reanudar_torrents.py
+!pausar_qbittorrent.py
+!reanudar_qbittorrent.py
+!pausar_transmission.py
+!reanudar_transmission.py
+!cliente_torrent_config.py
+!utils.py
+!entrypoint.sh
