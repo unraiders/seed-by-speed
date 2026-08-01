@@ -1,5 +1,6 @@
 import logging
 import os
+import re
 
 from colorama import Fore, Style, init
 from dotenv import load_dotenv
@@ -57,4 +58,37 @@ def setup_logger(name: str):
             lib_logger.removeHandler(handler)
 
     return logger
+
+
+# Separador de campos en torrents.txt. Cada línea es "hash|nombre": el hash
+# identifica el torrent y el nombre queda solo como referencia legible.
+SEPARADOR_CAMPOS = "|"
+
+# Un infohash es hexadecimal: 40 caracteres en v1 y 64 en v2.
+_PATRON_HASH = re.compile(r"[0-9a-fA-F]{40}|[0-9a-fA-F]{64}")
+
+
+def formatear_linea_torrent(torrent_hash: str, nombre: str) -> str:
+    """Construye la línea de torrents.txt para un torrent pausado."""
+    # El nombre se limpia de espacios y saltos para que no rompa el formato.
+    nombre_limpio = " ".join(nombre.split())
+    return f"{torrent_hash}{SEPARADOR_CAMPOS}{nombre_limpio}\n"
+
+
+def parsear_linea_torrent(linea: str):
+    """Devuelve (hash, nombre) a partir de una línea de torrents.txt.
+
+    Acepta el formato antiguo, que solo contenía el nombre del torrent, en cuyo
+    caso el hash devuelto es None y hay que localizarlo por nombre.
+    """
+    linea = linea.strip()
+    if not linea:
+        return None, None
+
+    posible_hash, separador, resto = linea.partition(SEPARADOR_CAMPOS)
+    if separador and _PATRON_HASH.fullmatch(posible_hash.strip()):
+        return posible_hash.strip().lower(), resto.strip()
+
+    # Formato antiguo: la línea entera es el nombre del torrent.
+    return None, linea
 

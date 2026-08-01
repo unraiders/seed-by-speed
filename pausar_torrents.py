@@ -4,7 +4,7 @@ from pausar_qbittorrent import pausar_torrents_qbittorrent
 from pausar_transmission import pausar_torrents_transmission
 from utils import setup_logger
 
-VERSION="1.3.1"
+VERSION="1.3.2"
 
 # Initialize logger
 logger = setup_logger('pausar_torrents')
