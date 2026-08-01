@@ -1,16 +1,17 @@
 import os
-from utils import setup_logger
+
 from cliente_torrent_config import get_transmission_client
+from utils import setup_logger
 
 # Initialize logger
 logger = setup_logger('reanudar_transmission')
 
 def reanudar_torrents_transmission():
     logger.info("Iniciando proceso de reanudar torrents")
-    
+
     # Get torrent client
     client = get_transmission_client()
-    
+
     # Verificar que el archivo existe
     if not os.path.exists('/app/data/torrents.txt'):
         logger.warning("El archivo torrents.txt no existe")
@@ -34,13 +35,13 @@ def reanudar_torrents_transmission():
         logger.debug(f"Total torrents en cliente torrent: {len(all_torrents)}")
 
         for torrent_name in torrents_to_resume:
-            if not torrent_name:  
+            if not torrent_name:
                 continue
-                
+
             logger.debug(f"Buscando torrent: {torrent_name}")
             # Buscar el torrent por nombre
             matching_torrents = [t for t in all_torrents if t.name == torrent_name]
-            
+
             if matching_torrents:
                 torrent = matching_torrents[0]  # Tomar el primer torrent que coincida
                 client.start_torrent(torrent.hashString)
@@ -48,7 +49,7 @@ def reanudar_torrents_transmission():
             else:
                 logger.warning(f"No se encontró el torrent: {torrent_name}")
                 remaining_torrents.append(torrent_name)
-                
+
     except Exception as e:
         logger.error(f"Error procesando torrents: {str(e)}")
         # En caso de error, preservar la lista de torrents

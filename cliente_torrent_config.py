@@ -1,7 +1,9 @@
 import os
 import time
+
 from qbittorrentapi import Client as qbClient
 from transmission_rpc import Client as transClient
+
 from utils import setup_logger
 
 # Initialize logger
@@ -13,7 +15,7 @@ def get_qbittorrent_client(max_retries=float('inf'), retry_delay=5):
     TORRENT_CLIENT_PORT = os.getenv('TORRENT_CLIENT_PORT')
     TORRENT_CLIENT_USER = os.getenv('TORRENT_CLIENT_USER')
     TORRENT_CLIENT_PASSWORD = os.getenv('TORRENT_CLIENT_PASSWORD')
-    
+
     attempts = 0
     while attempts < max_retries:
         try:
@@ -37,7 +39,7 @@ def get_qbittorrent_client(max_retries=float('inf'), retry_delay=5):
 
 
 def get_transmission_client(max_retries=float('inf'), retry_delay=5):
-    # Load environment variables       
+    # Load environment variables
     TORRENT_CLIENT_HOST = os.getenv('TORRENT_CLIENT_HOST')
     TORRENT_CLIENT_PORT = os.getenv('TORRENT_CLIENT_PORT')
     TORRENT_CLIENT_USER = os.getenv('TORRENT_CLIENT_USER')
