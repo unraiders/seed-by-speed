@@ -2,7 +2,7 @@ import json
 import time
 
 from cliente_torrent_config import get_qbittorrent_client
-from utils import setup_logger
+from utils import formatear_linea_torrent, setup_logger
 
 # Initialize logger
 logger = setup_logger('pausar_qbittorrent')
@@ -52,8 +52,8 @@ def pausar_torrents_qbittorrent():
             try:
                 client.torrents_pause(torrent.hash)
                 with open('/app/data/torrents.txt', 'a') as f:
-                    f.write(f"{torrent.name}\n")
-                logger.info(f"Pausado torrent: {torrent.name}")
+                    f.write(formatear_linea_torrent(torrent.hash, torrent.name))
+                logger.info(f"Pausado torrent: {torrent.name} ({torrent.hash})")
             except Exception as e:
                 logger.error(f"Error al pausar torrent {torrent.name}: {str(e)}")
 

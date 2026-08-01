@@ -1,7 +1,7 @@
 import os
 
 from cliente_torrent_config import get_qbittorrent_client
-from utils import setup_logger
+from utils import formatear_linea_torrent, parsear_linea_torrent, setup_logger
 
 # Initialize logger
 logger = setup_logger('reanudar_torrents')
@@ -20,7 +20,7 @@ def reanudar_torrents_qbittorrent():
     # Leer la lista de torrents en pausa
     try:
         with open('/app/data/torrents.txt', 'r') as f:
-            torrents_to_resume = [line.strip() for line in f.readlines() if line.strip()]
+            torrents_to_resume = [parsear_linea_torrent(line) for line in f.readlines() if line.strip()]
         logger.debug(f"Leídos {len(torrents_to_resume)} torrents del archivo")
     except Exception as e:
         logger.error(f"Error leyendo torrents.txt: {str(e)}")
@@ -34,21 +34,27 @@ def reanudar_torrents_qbittorrent():
         all_torrents = client.torrents_info()
         logger.debug(f"Total torrents en cliente torrent: {len(all_torrents)}")
 
-        for torrent_name in torrents_to_resume:
-            if not torrent_name:
+        # Índice por hash, que es el identificador fiable del torrent
+        torrents_por_hash = {t.hash.lower(): t for t in all_torrents}
+
+        for torrent_hash, torrent_name in torrents_to_resume:
+            if not torrent_hash and not torrent_name:
                 continue
 
-            logger.debug(f"Buscando torrent: {torrent_name}")
-            # Buscar el torrent por nombre
-            matching_torrents = [t for t in all_torrents if t.name == torrent_name]
+            logger.debug(f"Buscando torrent: {torrent_name} ({torrent_hash or 'sin hash'})")
 
-            if matching_torrents:
-                torrent = matching_torrents[0]  # Tomar el primer torrent que coincida
-                client.torrents_resume(torrent.hash)
-                logger.debug(f"Reanudado torrent: {torrent_name}")
+            if torrent_hash:
+                torrent = torrents_por_hash.get(torrent_hash)
             else:
-                logger.warning(f"No se encontró el torrent: {torrent_name}")
-                remaining_torrents.append(torrent_name)
+                # Formato antiguo sin hash: última búsqueda posible, por nombre
+                torrent = next((t for t in all_torrents if t.name == torrent_name), None)
+
+            if torrent:
+                client.torrents_resume(torrent.hash)
+                logger.debug(f"Reanudado torrent: {torrent.name} ({torrent.hash})")
+            else:
+                logger.warning(f"No se encontró el torrent: {torrent_name} ({torrent_hash or 'sin hash'})")
+                remaining_torrents.append((torrent_hash, torrent_name))
 
     except Exception as e:
         logger.error(f"Error procesando torrents: {str(e)}")
@@ -58,8 +64,11 @@ def reanudar_torrents_qbittorrent():
     # Escribe de nuevo los torrentes restantes
     try:
         with open('/app/data/torrents.txt', 'w') as f:
-            for torrent_name in remaining_torrents:
-                f.write(f"{torrent_name}\n")
+            for torrent_hash, torrent_name in remaining_torrents:
+                if torrent_hash:
+                    f.write(formatear_linea_torrent(torrent_hash, torrent_name))
+                else:
+                    f.write(f"{torrent_name}\n")
         logger.debug(f"Guardados {len(remaining_torrents)} torrents pendientes")
     except Exception as e:
         logger.error(f"Error escribiendo torrents.txt: {str(e)}")

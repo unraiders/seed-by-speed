@@ -3,7 +3,7 @@ FROM python:3.12-alpine
 LABEL maintainer="unraiders"
 LABEL description="Pausa/Reanuda torrents en qBittorrent o Transmission basado en la velocidad de upload fuera de tiempo de sedeo obligatorio."
 
-ARG VERSION=1.3.1
+ARG VERSION=1.3.2
 ENV VERSION=$VERSION
 ARG LAST_ACTION=
 

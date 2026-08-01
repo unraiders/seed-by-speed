@@ -4,7 +4,7 @@ from reanudar_qbittorrent import reanudar_torrents_qbittorrent
 from reanudar_transmission import reanudar_torrents_transmission
 from utils import setup_logger
 
-VERSION="1.3.1"
+VERSION="1.3.2"
 
 # Initialize logger
 logger = setup_logger('reanudar_torrents')
