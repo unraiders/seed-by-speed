@@ -1,5 +1,6 @@
 import logging
 import os
+
 from colorama import Fore, Style, init
 from dotenv import load_dotenv
 
@@ -47,7 +48,7 @@ def setup_logger(name: str):
         'urllib3.connectionpool',
         'qbittorrentapi.decorators'
     ]
-    
+
     for lib in third_party_loggers:
         lib_logger = logging.getLogger(lib)
         lib_logger.setLevel(logging.WARNING)

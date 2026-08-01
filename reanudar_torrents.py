@@ -1,13 +1,14 @@
 import os
-from utils import setup_logger
+
 from reanudar_qbittorrent import reanudar_torrents_qbittorrent
 from reanudar_transmission import reanudar_torrents_transmission
+from utils import setup_logger
 
-VERSION="1.3.0"
+VERSION="1.3.1"
 
 # Initialize logger
 logger = setup_logger('reanudar_torrents')
-    
+
 if __name__ == "__main__":
     torrent_client = os.getenv('TORRENT_CLIENT')
 
@@ -16,4 +17,4 @@ if __name__ == "__main__":
     elif torrent_client == 'transmission':
         reanudar_torrents_transmission()
     else:
-        raise ValueError(f"Cliente de torrent no soportado: {torrent_client}")  
+        raise ValueError(f"Cliente de torrent no soportado: {torrent_client}")
